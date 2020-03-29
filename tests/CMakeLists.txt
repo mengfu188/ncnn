@@ -44,3 +44,15 @@ ncnn_add_layer_test(Sigmoid)
 ncnn_add_layer_test(Slice)
 ncnn_add_layer_test(Softmax)
 ncnn_add_layer_test(UnaryOp)
+ncnn_add_layer_test(MyLayer)
+
+message(WARNING "TEST WARNING MESSAGE")
+
+message(WARNING "${CMAKE_SOURCE_DIR}" ${CMAKE_SOURCE_DIR})
+
+#message(WARNING $<TARGET_FILE_DIR:test_mylayer>)
+
+# add_custom_target(test_mylayer)
+add_custom_command(TARGET test_mylayer POST_BUILD 
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different  
+    ${CMAKE_SOURCE_DIR}/tests/model-mylayer.param $<TARGET_FILE_DIR:test_mylayer>)
