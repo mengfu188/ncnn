@@ -1,0 +1,4 @@
+7767517
+2 2
+Input            input   0 1 input 0=5 1=2 2=3
+MyLayer          mylayer 1 1 input mylayer0 0=3

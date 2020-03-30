@@ -51,3 +51,17 @@ ncnn_add_layer_test(TanH)
 ncnn_add_layer_test(Clip)
 ncnn_add_layer_test(HardSigmoid)
 ncnn_add_layer_test(HardSwish)
+
+
+ncnn_add_layer_test(MyLayer)
+
+message(WARNING "TEST WARNING MESSAGE")
+
+message(WARNING "${CMAKE_SOURCE_DIR}" ${CMAKE_SOURCE_DIR})
+
+#message(WARNING $<TARGET_FILE_DIR:test_mylayer>)
+
+# add_custom_target(test_mylayer)
+add_custom_command(TARGET test_mylayer POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${CMAKE_SOURCE_DIR}/tests/model-mylayer.param $<TARGET_FILE_DIR:test_mylayer>)
