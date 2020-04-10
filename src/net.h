@@ -66,7 +66,7 @@ public:
     int register_custom_layer(int index, layer_creator_func creator);
 
 #if NCNN_STRING
-    int load_param(const DataReader& dr);
+    int load_param(const DataReader& dr); // 解析模型格式文件，创建layer
 #endif // NCNN_STRING
 
     int load_param_bin(const DataReader& dr);

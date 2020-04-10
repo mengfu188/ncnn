@@ -14,7 +14,7 @@ namespace ncnn{
     }
     // 如何加载权重
     int MyLayer::load_model(const ncnn::ModelBin &mb) {
-        gamma_data = mb.load(channels, 1);
+        gamma_data = mb.load(channels, 1); // 0代表自动推倒，1代表32为格式
         if(gamma_data.empty()){
 
             fprintf(stderr, "mylayer load_model is empty\n");

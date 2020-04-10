@@ -48,7 +48,7 @@ ModelBinFromDataReader::ModelBinFromDataReader(const DataReader& _dr) : dr(_dr)
 }
 
 Mat ModelBinFromDataReader::load(int w, int type) const
-{
+{// 0代表自动推导，1代表读32位
     if (type == 0)
     {
         size_t nread;
