@@ -1114,7 +1114,7 @@ int Net::forward_layer(int layer_index, std::vector<Mat>& blob_mats, Option& opt
 
         if (blob_mats[bottom_blob_index].dims == 0)
         {
-            int ret = forward_layer(blobs[bottom_blob_index].producer, blob_mats, opt);
+            int ret = forward_layer(blobs[bottom_blob_index].producer, blob_mats, opt);  // importance!!! 重点！！！
             if (ret != 0)
                 return ret;
         }
