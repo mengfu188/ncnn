@@ -2,16 +2,19 @@
 macro(ncnn_add_example name)
     add_executable(${name} ${name}.cpp)
     target_compile_options(${name} PRIVATE -std=c++11)
+    message(OpenCV_LIBS " " ${OpenCV_LIBS})
     target_link_libraries(${name} PRIVATE ncnn ${OpenCV_LIBS})
 
     # add test to a virtual project group
     set_property(TARGET ${name} PROPERTY FOLDER "examples")
 endmacro()
 
-find_package(OpenCV QUIET COMPONENTS core highgui imgproc imgcodecs)
+find_package(OpenCV QUIET COMPONENTS core highgui imgproc imgcodecs PATHS /home/cmf/dev/opencv-4.2.0/build/install)
 if(NOT OpenCV_FOUND)
-    find_package(OpenCV QUIET COMPONENTS core highgui imgproc)
+    find_package(OpenCV QUIET COMPONENTS core highgui imgproc PATHS /home/cmf/dev/opencv-4.2.0/build/install)
 endif()
+
+message(OpenCV_DIR " " ${OpenCV_DIR})
 
 if(OpenCV_FOUND)
     include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src)
@@ -29,6 +32,7 @@ if(OpenCV_FOUND)
     ncnn_add_example(peleenetssd_seg)
     ncnn_add_example(simplepose)
     ncnn_add_example(retinaface)
+    ncnn_add_example(draft)
 else()
     message(WARNING "OpenCV not found, examples won't be built")
 endif()
