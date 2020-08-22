@@ -844,6 +844,7 @@ int main(int argc, char** argv)
 
     if (!parser.has("param") || !parser.has("bin") || !parser.has("images") || !parser.has("output") || !parser.has("mean") || !parser.has("norm"))
     {
+        std::cout << !parser.has("param") << !parser.has("bin") << !parser.has("images") << !parser.has("output") << !parser.has("mean") << !parser.has("norm") << std::endl;
         std::cout << "Inputs is does not include all needed param, pleas check..." << std::endl;
         parser.printMessage();
         showUsage();

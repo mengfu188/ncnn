@@ -43,3 +43,12 @@ build*/
 # IDE
 .vs
 .vscode
+.idea
+*build*
+graphviz
+CMakeSettings.json
+
+# self
+examples/*.svg
+models/*
+images*

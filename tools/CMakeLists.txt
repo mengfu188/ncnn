@@ -29,3 +29,20 @@ endif()
 # add all tools to a virtual project group
 set_property(TARGET ncnn2mem PROPERTY FOLDER "tools")
 set_property(TARGET ncnnoptimize PROPERTY FOLDER "tools")
+
+
+find_package(OpenCV QUIET COMPONENTS core highgui imgproc imgcodecs)
+if(NOT OpenCV_FOUND)
+    find_package(OpenCV QUIET COMPONENTS core highgui imgproc)
+endif()
+
+if(OpenCV_FOUND)
+    add_executable(net_output net_output.cpp)
+    target_compile_definitions(net_output PRIVATE -DOpenCV_VERSION_MAJOR=${OpenCV_VERSION_MAJOR})
+    target_link_libraries(net_output PRIVATE ncnn ${OpenCV_LIBS})
+
+    # add all ncnn2table and ncnn2int8 tool to a virtual project group
+    set_property(TARGET net_output PROPERTY FOLDER "tools")
+else()
+    message(WARNING "OpenCV not found, net_output tools won't be built")
+endif()

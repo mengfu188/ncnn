@@ -25,6 +25,12 @@
 #include "layer.h"
 #include "net.h"
 
+#include <direct.h>
+//#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
 // ncnn private header
 #include "layer/batchnorm.h"
 #include "layer/bias.h"
@@ -3645,6 +3651,20 @@ int main(int argc, char** argv)
     else
     {
         optimizer.storage_type = 0;
+    }
+
+
+    //打印输出当前路径
+    char *buffer;
+    //也可以将buffer作为输出参数
+    if((buffer = getcwd(NULL, 0)) == NULL)
+    {
+        perror("getcwd error");
+    }
+    else
+    {
+        printf("cwd path:%s\n", buffer);
+        free(buffer);
     }
 
     optimizer.load_param(inparam);
